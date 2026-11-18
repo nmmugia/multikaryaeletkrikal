@@ -5,7 +5,7 @@
 
 :root {
   /* Brand Color Palette */
-  --background: oklch(0.98 0.004 60);
+  --background: #f7f8fa;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -40,13 +40,13 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   /* Custom Brand Colors */
-  --brand-50: #f9f8f6;
-  --brand-100: #f0efe9;
-  --brand-200: #e2e0d6;
-  --brand-300: #c9c9ba;
-  --brand-500: #8c8573;
-  --brand-600: #6b6555;
-  --brand-900: #1c1917;
+  --brand-50: #f7f8fa;
+  --brand-100: #edf0f4;
+  --brand-200: #dce1e8;
+  --brand-300: #b8c2d0;
+  --brand-500: #b51226;
+  --brand-600: #526176;
+  --brand-900: #15243a;
 }
 
 .dark {
@@ -190,9 +190,13 @@
   }
 }
 
-/* Reveal animations */
-.reveal.active,
-.reveal-child.active {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
+/* Motion system */
+.reveal-on-scroll { opacity: 0; transform: translateY(22px); transition: opacity 700ms ease, transform 700ms cubic-bezier(.2,.7,.2,1); }
+.reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+.hero-enter { animation: hero-enter 900ms cubic-bezier(.2,.7,.2,1) both; }
+.hero-card { animation: hero-enter 1100ms 180ms cubic-bezier(.2,.7,.2,1) both; }
+@keyframes hero-enter { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .reveal-on-scroll { opacity: 1; transform: none; }
 }

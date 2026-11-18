@@ -17,16 +17,16 @@ const jakarta = Plus_Jakarta_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "Ascendia | Strategic Consulting & Growth",
+  title: "PT Multikarya Elektrikal Indonesia | Infrastruktur TI & Elektrikal",
   description:
-    "Ascendia provides data-driven strategic consulting for modern enterprises looking to scale, optimize operations, and navigate complex markets.",
-  keywords: "consulting, strategy, business growth, operational efficiency, digital transformation",
-  authors: [{ name: "Ascendia Consulting" }],
+    "Mitra terpercaya untuk infrastruktur TI, engineering, pengadaan, data center, PMS LAN, UPS & genset, CCTV, dan solusi elektrikal di Indonesia.",
+  keywords: "infrastruktur TI, engineering, elektrikal, data center, PMS LAN, UPS, genset, CCTV, Bandung",
+  authors: [{ name: "PT Multikarya Elektrikal Indonesia" }],
   openGraph: {
     type: "website",
-    url: "https://ascendia.demo",
-    title: "Ascendia | Strategic Clarity for Complex Markets",
-    description: "We partner with visionary leaders to navigate uncertainty and unlock sustainable growth.",
+    url: "https://www.multikaryaindonesia.com",
+    title: "PT Multikarya Elektrikal Indonesia | Infrastruktur Andal",
+    description: "Solusi infrastruktur TI, engineering, dan elektrikal dengan mengutamakan keselamatan, kualitas, serta ketepatan waktu.",
     images: [
       {
         url: "/images/social-preview.jpg",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#1C1917",
+  themeColor: "#101c2d",
 }
 
 export default function RootLayout({
@@ -64,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${playfair.variable}`}>
+    <html lang="id" className={`${jakarta.variable} ${playfair.variable}`}>
       <body className="font-sans antialiased">
         {children}
         <Analytics />

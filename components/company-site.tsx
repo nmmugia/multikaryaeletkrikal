@@ -1,0 +1,92 @@
+"use client"
+
+import Image from "next/image"
+import { useEffect, useState } from "react"
+import { ArrowDown, ArrowRight, ArrowUpRight, Cable, Camera, Check, ChevronRight, Cpu, HardDrive, Mail, MapPin, Menu, Monitor, Phone, PlugZap, Radio, ShieldCheck, Sparkles, X } from "lucide-react"
+
+const services = [
+  { icon: Cable, title: "Infrastruktur Jaringan", subtitle: "Network & Connectivity", text: "Instalasi dan pemeliharaan PMS LAN, structured cabling, serta recabling untuk konektivitas yang andal." },
+  { icon: HardDrive, title: "Data Center", subtitle: "Critical Infrastructure", text: "Pembangunan dan dukungan infrastruktur pusat data yang aman, terukur, dan siap berkembang." },
+  { icon: PlugZap, title: "UPS & Genset", subtitle: "Power Continuity", text: "Instalasi sistem daya cadangan untuk menjaga operasional bisnis tetap berjalan tanpa gangguan." },
+  { icon: Radio, title: "Mekanikal & Elektrikal", subtitle: "Engineering Solutions", text: "Solusi engineering, pengadaan, dan infrastruktur elektrikal untuk fasilitas modern." },
+  { icon: Camera, title: "CCTV & Access Control", subtitle: "Security Systems", text: "Sistem pengawasan dan kontrol akses terintegrasi untuk keamanan area kerja Anda." },
+  { icon: Monitor, title: "Digital & Multimedia", subtitle: "Technology in Action", text: "Videotron, desain aplikasi dan web, hingga dukungan multimedia untuk acara digital." },
+]
+
+const projects = [
+  { year: "2025", title: "Instalasi CCTV", detail: "Sistem keamanan terintegrasi", image: "/images/showcase-office.jpg" },
+  { year: "2024", title: "Instalasi PMS LAN", detail: "Infrastruktur jaringan", image: "/images/showcase-meeting.jpg" },
+  { year: "2023", title: "UPS & Genset", detail: "Sistem daya berkelanjutan", image: "/images/showcase-brainstorm.jpg" },
+]
+
+export function CompanySite() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [activeLang, setActiveLang] = useState<"id" | "en">("id")
+  const isId = activeLang === "id"
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible")
+        observer.unobserve(entry.target)
+      }
+    }), { threshold: 0.12 })
+    document.querySelectorAll(".reveal-on-scroll").forEach((item) => observer.observe(item))
+    return () => observer.disconnect()
+  }, [])
+
+  const links = [ ["Tentang", "#about"], ["Layanan", "#services"], ["Proyek", "#projects"], ["Kontak", "#contact"] ]
+
+  return (
+    <main className="min-h-screen overflow-hidden bg-[#f7f8fa] text-[#15243a] selection:bg-[#b51226] selection:text-white">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#101c2d]/95 text-white backdrop-blur-xl">
+        <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 md:px-8">
+          <a href="#home" className="flex items-center gap-3" aria-label="Multikarya Elektrikal Indonesia, beranda">
+            <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-KgluFPUjShqqLqPKDFvIF8k5624V6C.png" alt="Logo MEI" width={68} height={42} className="h-10 w-[68px] object-contain" unoptimized />
+            <span className="hidden border-l border-white/20 pl-3 text-[10px] font-semibold uppercase leading-[1.5] tracking-[.16em] text-white/70 sm:block">Multikarya<br/>Elektrikal Indonesia</span>
+          </a>
+          <nav className="hidden items-center gap-8 md:flex" aria-label="Navigasi utama">
+            {links.map(([label, href]) => <a key={href} href={href} className="text-[13px] font-medium text-white/75 transition hover:text-white">{label}</a>)}
+          </nav>
+          <div className="flex items-center gap-3">
+            <div className="hidden items-center rounded-full border border-white/15 p-1 sm:flex" aria-label="Pilih bahasa">
+              <button onClick={() => setActiveLang("id")} className={`rounded-full px-2.5 py-1 text-[10px] font-bold ${isId ? "bg-white text-[#15243a]" : "text-white/60"}`} aria-pressed={isId}>ID</button>
+              <button onClick={() => setActiveLang("en")} className={`rounded-full px-2.5 py-1 text-[10px] font-bold ${!isId ? "bg-white text-[#15243a]" : "text-white/60"}`} aria-pressed={!isId}>EN</button>
+            </div>
+            <a href="#contact" className="hidden items-center gap-2 rounded-full bg-[#b51226] px-5 py-2.5 text-xs font-semibold transition hover:bg-[#d01a31] sm:flex">Hubungi Kami <ArrowUpRight size={14}/></a>
+            <button className="rounded-lg p-2 md:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Tutup menu" : "Buka menu"} aria-expanded={menuOpen}>{menuOpen ? <X/> : <Menu/>}</button>
+          </div>
+        </div>
+        {menuOpen && <nav className="flex flex-col gap-5 border-t border-white/10 bg-[#101c2d] px-6 py-6 md:hidden">{links.map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)} className="text-sm text-white/85">{label}</a>)}<a href="#contact" onClick={() => setMenuOpen(false)} className="text-sm font-semibold text-[#ff6575]">Hubungi Kami <ArrowRight className="ml-1 inline" size={15}/></a></nav>}
+      </header>
+
+      <section id="home" className="relative flex min-h-[740px] items-center bg-[#101c2d] pt-[76px] text-white md:min-h-[790px]">
+        <div className="absolute inset-0"><Image src="/images/infrastructure-hero.png" alt="Engineer memeriksa rak server di pusat data modern" fill priority sizes="100vw" className="object-cover object-center opacity-45"/><div className="absolute inset-0 bg-gradient-to-r from-[#101c2d] via-[#101c2d]/90 to-[#101c2d]/30"/><div className="absolute inset-0 bg-gradient-to-t from-[#101c2d]/60 via-transparent to-[#101c2d]/20"/></div>
+        <div className="absolute inset-0 opacity-[.11]" style={{backgroundImage:"linear-gradient(rgba(255,255,255,.18) 1px, transparent 1px),linear-gradient(90deg,rgba(255,255,255,.18) 1px,transparent 1px)",backgroundSize:"72px 72px"}}/>
+        <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-5 py-24 md:px-8 lg:grid-cols-[1.12fr_.88fr]">
+          <div className="hero-enter">
+            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[.06] px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[.19em] text-white/80 backdrop-blur"><span className="size-1.5 rounded-full bg-[#e1374d] shadow-[0_0_12px_#ef5363]"/> Engineering · Procurement · IT Infrastructure</div>
+            <h1 className="max-w-3xl text-[clamp(2.8rem,6.8vw,5.6rem)] font-semibold leading-[1.04] tracking-[-.055em]">Infrastruktur andal.<br/><span className="text-[#f25566]">Bisnis melaju.</span></h1>
+            <p className="mt-7 max-w-xl text-base leading-7 text-white/70 md:text-lg md:leading-8">{isId ? "Mitra terpercaya untuk solusi infrastruktur TI, engineering, dan elektrikal—dirancang dengan mengutamakan keselamatan, kualitas, serta ketepatan waktu." : "Your trusted partner in IT infrastructure, engineering, and electrical solutions—delivered with safety, quality, and on-time execution."}</p>
+            <div className="mt-9 flex flex-wrap items-center gap-3"><a href="#contact" className="group inline-flex items-center gap-3 rounded-full bg-[#b51226] px-6 py-3.5 text-sm font-semibold transition hover:bg-[#d01a31]">Konsultasikan Proyek <ArrowRight size={16} className="transition-transform group-hover:translate-x-1"/></a><a href="#services" className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-sm font-medium text-white/90 transition hover:border-white/60 hover:bg-white/5">Jelajahi layanan <ArrowDown size={15}/></a></div>
+            <div className="mt-14 flex flex-wrap gap-x-8 gap-y-3 border-t border-white/15 pt-6 text-xs text-white/60"><span className="inline-flex items-center gap-2"><ShieldCheck size={16} className="text-[#f25566]"/>Mengutamakan keselamatan</span><span className="inline-flex items-center gap-2"><Check size={15} className="text-[#f25566]"/>Kualitas & ketepatan waktu</span></div>
+          </div>
+          <div className="hero-card relative hidden lg:block"><div className="absolute -right-3 -top-3 size-28 rounded-full border border-[#f25566]/40"/><div className="absolute -right-7 -top-7 size-28 rounded-full border border-[#f25566]/20"/><div className="relative ml-auto max-w-[390px] rounded-2xl border border-white/20 bg-[#142239]/75 p-6 shadow-2xl backdrop-blur-xl"><div className="mb-7 flex items-center justify-between"><div><span className="text-[10px] uppercase tracking-[.2em] text-white/45">Multikarya Elektrikal Indonesia</span><p className="mt-1 text-sm font-semibold">Technology that keeps you moving</p></div><Sparkles className="text-[#f25566]" size={19}/></div><div className="space-y-4">{[[Cpu,"Engineering & Procurement"],[HardDrive,"Data Center & Network"],[PlugZap,"Electrical & Power Systems"]].map(([Icon,label],i)=>{const I=Icon as typeof Cpu;return <div key={i} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[.04] p-3.5"><span className="flex size-10 items-center justify-center rounded-lg bg-[#b51226]/20 text-[#ff7786]"><I size={18}/></span><span className="text-xs font-medium text-white/85">{label as string}</span><ArrowUpRight size={14} className="ml-auto text-white/35"/></div>})}</div><div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4 text-[10px] text-white/45"><span>Bandung, Indonesia</span><span className="flex items-center gap-1.5"><span className="size-1.5 rounded-full bg-emerald-400"/>Siap berkolaborasi</span></div></div></div>
+        </div>
+        <a href="#about" className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-[9px] uppercase tracking-[.2em] text-white/45 md:flex">Scroll untuk mengenal kami <span className="animate-bounce"><ArrowDown size={14}/></span></a>
+      </section>
+
+      <section id="about" className="relative px-5 py-20 md:px-8 md:py-28"><div className="reveal-on-scroll mx-auto grid max-w-7xl gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-24"><div><p className="mb-4 text-[10px] font-bold uppercase tracking-[.24em] text-[#b51226]">01 / Tentang Kami</p><h2 className="text-4xl font-semibold leading-tight tracking-[-.04em] md:text-5xl">Teknologi yang dibangun dengan <span className="text-[#b51226]">tanggung jawab.</span></h2></div><div className="pt-1"><p className="text-lg leading-8 text-[#526176]">PT. Multikarya Elektrikal Indonesia adalah perusahaan yang bergerak di bidang infrastruktur TI, didukung tenaga profesional yang berpengalaman.</p><p className="mt-5 leading-7 text-[#687589]">Kami mengutamakan keselamatan kerja—baik bagi sumber daya manusia maupun peralatan—serta menjaga kualitas dan ketepatan waktu untuk memberikan hasil maksimal dan kepuasan bagi klien.</p><div className="mt-9 grid gap-5 border-t border-[#dce1e8] pt-6 sm:grid-cols-2"><div><span className="text-[10px] font-bold uppercase tracking-[.2em] text-[#b51226]">Visi</span><p className="mt-2 text-sm leading-6 text-[#526176]">Menjadi perusahaan konstruksi unggulan dalam engineering, pengadaan, dan infrastruktur teknologi informasi.</p></div><div><span className="text-[10px] font-bold uppercase tracking-[.2em] text-[#b51226]">Misi</span><p className="mt-2 text-sm leading-6 text-[#526176]">Meningkatkan layanan dengan memahami kebutuhan klien dan menghadirkan rasa aman serta nyaman.</p></div></div></div></div></section>
+
+      <section id="services" className="bg-[#101c2d] px-5 py-20 text-white md:px-8 md:py-28"><div className="mx-auto max-w-7xl"><div className="reveal-on-scroll mb-12 flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="mb-4 text-[10px] font-bold uppercase tracking-[.24em] text-[#f25566]">02 / Kapabilitas</p><h2 className="text-4xl font-semibold tracking-[-.04em] md:text-5xl">Solusi menyeluruh.<br/><span className="text-white/45">Satu mitra tepercaya.</span></h2></div><p className="max-w-sm text-sm leading-6 text-white/55">Dari infrastruktur inti hingga dukungan operasional—kami hadir sesuai kebutuhan bisnis Anda.</p></div><div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">{services.map(({icon:Icon,title,subtitle,text},i)=><article key={title} className="reveal-on-scroll group bg-[#142239] p-6 transition-colors duration-300 hover:bg-[#1b2c46] md:p-8" style={{transitionDelay:`${i*70}ms`}}><div className="flex items-start justify-between"><span className="flex size-11 items-center justify-center rounded-xl border border-white/10 bg-white/[.04] text-[#f25566] transition group-hover:border-[#b51226]/50 group-hover:bg-[#b51226]/15"><Icon size={20}/></span><span className="text-[10px] tabular-nums text-white/30">0{i+1}</span></div><p className="mt-7 text-[9px] font-semibold uppercase tracking-[.18em] text-white/40">{subtitle}</p><h3 className="mt-2 text-lg font-semibold tracking-tight">{title}</h3><p className="mt-3 text-sm leading-6 text-white/55">{text}</p><a href="#contact" className="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold text-[#f25566]">Diskusikan kebutuhan <ChevronRight size={14}/></a></article>)}</div><p className="mt-6 text-xs text-white/40">Juga tersedia: Onsite Preventive Maintenance · Onsite Managed Service · Plumbing</p></div></section>
+
+      <section id="projects" className="px-5 py-20 md:px-8 md:py-28"><div className="mx-auto max-w-7xl"><div className="reveal-on-scroll mb-12 flex items-end justify-between gap-5"><div><p className="mb-4 text-[10px] font-bold uppercase tracking-[.24em] text-[#b51226]">03 / Rekam Jejak</p><h2 className="text-4xl font-semibold tracking-[-.04em] md:text-5xl">Pekerjaan nyata.<br/>Dampak berkelanjutan.</h2></div><span className="hidden text-xs text-[#687589] sm:block">Pilihan dokumentasi proyek</span></div><div className="grid gap-5 md:grid-cols-3">{projects.map((project,i)=><article key={project.year} className="reveal-on-scroll group" style={{transitionDelay:`${i*100}ms`}}><div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-[#dce1e8]"><Image src={project.image} alt={project.title} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover transition duration-700 group-hover:scale-105"/><div className="absolute inset-0 bg-gradient-to-t from-[#101c2d]/75 to-transparent"/><span className="absolute bottom-4 left-4 rounded-full border border-white/30 bg-black/15 px-3 py-1 text-[10px] text-white backdrop-blur">{project.year}</span><ArrowUpRight className="absolute bottom-4 right-4 text-white" size={17}/></div><h3 className="mt-4 text-lg font-semibold">{project.title}</h3><p className="mt-1 text-xs text-[#687589]">{project.detail}</p></article>)}</div><p className="mt-7 text-xs leading-5 text-[#7a8594]">Dokumentasi proyek pada situs ini merupakan ilustrasi portofolio layanan. Detail proyek dapat dibagikan sesuai izin klien.</p></div></section>
+
+      <section className="border-y border-[#e1e5eb] bg-white px-5 py-16 md:px-8"><div className="reveal-on-scroll mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-center md:justify-between"><div><p className="text-[10px] font-bold uppercase tracking-[.24em] text-[#b51226]">04 / Kepatuhan & Legalitas</p><h2 className="mt-3 text-3xl font-semibold tracking-tight">Bekerja dengan standar yang jelas.</h2></div><div className="grid gap-3 sm:grid-cols-3">{["NIB","SKT — Surat Keterangan Terdaftar","SIK — Surat Instruksi Kerja"].map((item)=><div key={item} className="flex items-center gap-2.5 rounded-lg border border-[#e1e5eb] px-4 py-3 text-xs font-medium"><ShieldCheck size={17} className="shrink-0 text-[#b51226]"/>{item}</div>)}</div></div></section>
+
+      <section id="contact" className="relative overflow-hidden bg-[#b51226] px-5 py-20 text-white md:px-8 md:py-24"><div className="absolute -right-24 -top-32 size-96 rounded-full border border-white/10"/><div className="absolute -right-10 -top-16 size-72 rounded-full border border-white/10"/><div className="reveal-on-scroll relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_.8fr] lg:items-end"><div><p className="mb-4 text-[10px] font-bold uppercase tracking-[.24em] text-white/65">05 / Mari Berkolaborasi</p><h2 className="max-w-2xl text-4xl font-semibold leading-tight tracking-[-.04em] md:text-6xl">Siap membangun infrastruktur yang lebih baik?</h2><p className="mt-5 max-w-lg text-sm leading-7 text-white/75">Ceritakan kebutuhan proyek Anda. Tim kami siap membantu menemukan solusi yang tepat.</p><a href="https://wa.me/6281321002122" target="_blank" rel="noreferrer" className="mt-8 inline-flex items-center gap-3 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#15243a] transition hover:bg-white/90">Mulai percakapan <ArrowUpRight size={16}/></a></div><div className="space-y-5 border-t border-white/25 pt-6 lg:ml-auto lg:w-full lg:max-w-md"><a href="https://maps.google.com/?q=Jl.+Tubagus+Ismail+No.40+Bandung" target="_blank" rel="noreferrer" className="flex gap-3 text-sm leading-6 text-white/85"><MapPin className="mt-1 shrink-0" size={17}/><span>Ruko NonStop Lantai 3 No. 7<br/>Jl. Tubagus Ismail No. 40, Coblong<br/>Bandung, Jawa Barat 40134</span></a><a href="tel:+6281321002122" className="flex items-center gap-3 text-sm text-white/85"><Phone size={16}/>Aden Naufal Miskun · 0813 2100 2122</a><a href="tel:+62811226857" className="flex items-center gap-3 text-sm text-white/85"><Phone size={16}/>Noman Herudo · 0811 226 857</a></div></div></section>
+
+      <footer className="bg-[#101c2d] px-5 py-7 text-white/50 md:px-8"><div className="mx-auto flex max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"><div className="flex items-center gap-3"><Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-KgluFPUjShqqLqPKDFvIF8k5624V6C.png" alt="" width={44} height={27} className="h-7 w-11 object-contain" unoptimized/><span className="text-[10px]">PT. Multikarya Elektrikal Indonesia</span></div><div className="flex flex-wrap gap-x-5 gap-y-2 text-[10px]"><a href="https://www.multikaryaindonesia.com" target="_blank" rel="noreferrer" className="transition hover:text-white">multikaryaindonesia.com</a><a href="mailto:info@multikaryaindonesia.com" className="inline-flex items-center gap-1 transition hover:text-white"><Mail size={12}/> Email kami</a><span>© {new Date().getFullYear()} MEI. Hak cipta dilindungi.</span></div></div></footer>
+    </main>
+  )
+}
