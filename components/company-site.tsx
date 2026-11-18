@@ -10,7 +10,7 @@ const services = [
   { icon: PlugZap, title: "UPS & Genset", subtitle: "Power Continuity", text: "Instalasi sistem daya cadangan untuk menjaga operasional bisnis tetap berjalan tanpa gangguan." },
   { icon: Radio, title: "Mekanikal & Elektrikal", subtitle: "Engineering Solutions", text: "Solusi engineering, pengadaan, dan infrastruktur elektrikal untuk fasilitas modern." },
   { icon: Camera, title: "CCTV & Access Control", subtitle: "Security Systems", text: "Sistem pengawasan dan kontrol akses terintegrasi untuk keamanan area kerja Anda." },
-  { icon: Monitor, title: "Digital & Multimedia", subtitle: "Technology in Action", text: "Videotron, desain aplikasi dan web, pengadaan perangkat IT (seperti Smartboard, Printer, Laptop, dll.), hingga dukungan multimedia untuk acara digital." },
+  { icon: Monitor, title: "Pengadaan Perangkat IT", subtitle: "Technology in Action", text: "Menyediakan berbagai perangkat mulai dari Smartboard, laptop, printer, hingga perlengkapan teknologi lainnya untuk mendukung produktivitas dan efisiensi kerja." },
 ]
 
 const projects = [
@@ -25,7 +25,7 @@ const englishServices = [
   { title: "UPS & Generators", subtitle: "Power Continuity", text: "Backup power systems that help keep your business operating without interruption." },
   { title: "Mechanical & Electrical", subtitle: "Engineering Solutions", text: "Engineering, procurement, and electrical infrastructure for modern facilities." },
   { title: "CCTV & Access Control", subtitle: "Security Systems", text: "Integrated surveillance and access-control systems to help secure your facilities." },
-  { title: "Digital & Multimedia", subtitle: "Technology in Action", text: "Videotrons, web and application design, and multimedia support for digital events." },
+  { title: "IT Devices Provider", subtitle: "Technology in Action", text: "Provide You with various decives like smartboard, laptop, printer, and many other technologies that will boost you productivity and efficiency of your company." },
 ]
 
 const englishProjects = [
