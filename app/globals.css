@@ -191,6 +191,9 @@
 }
 
 /* Motion system */
+.lan-photo-track { animation: lan-photo-scroll 72s linear infinite; }
+.lan-photo-track:hover, .lan-photo-track:focus-within { animation-play-state: paused; }
+@keyframes lan-photo-scroll { to { transform: translateX(-50%); } }
 .reveal-on-scroll { opacity: 0; transform: translateY(22px); transition: opacity 700ms ease, transform 700ms cubic-bezier(.2,.7,.2,1); }
 .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
 .hero-enter { animation: hero-enter 900ms cubic-bezier(.2,.7,.2,1) both; }
@@ -199,4 +202,5 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .reveal-on-scroll { opacity: 1; transform: none; }
+  .lan-photo-track { animation: none !important; }
 }
